@@ -30,7 +30,7 @@ lazy val test = project
   .settings(
     skip.in(publish) := true,
     projectSettings,
-    addCompilerPlugin("org.typelevel" % "kind-projector" % "0.11.0" cross CrossVersion.full),
+    addCompilerPlugin("org.typelevel" % "kind-projector" % "0.13.2" cross CrossVersion.full),
     libraryDependencies += "com.novocode" % "junit-interface" % "0.11" % Test,
     scalacOptions ++= {
       val jar = (core / Compile / packageBin).value
@@ -46,7 +46,6 @@ lazy val test = project
       "-Ywarn-unused:implicits", // Warn if an implicit parameter is unused.
       "-Ywarn-unused:imports", // Warn if an import selector is not referenced.
       "-Ywarn-unused:locals", // Warn if a local definition is unused.
-      "-Ywarn-unused:params", // Warn if a value parameter is unused.
       "-Ywarn-unused:patvars", // Warn if a variable bound in a pattern is unused.
       "-Ywarn-unused:privates", // Warn if a private member is unused.
     ))
@@ -59,6 +58,6 @@ lazy val projectSettings = Seq(
   developers := List(
     Developer("augustjune", "Yura Slinkin", "jurij.jurich@gmail.com", url("https://github.com/augustjune"))
   ),
-  scalaVersion := "2.13.1",
+  scalaVersion := "2.13.12",
   crossScalaVersions := Seq(scalaVersion.value, "2.12.10", "2.11.12")
 )
