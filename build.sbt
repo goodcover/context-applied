@@ -30,7 +30,7 @@ lazy val test = project
   .settings(
     skip.in(publish) := true,
     projectSettings,
-    addCompilerPlugin("org.typelevel" % "kind-projector" % "0.13.2" cross CrossVersion.full),
+    addCompilerPlugin("org.typelevel" % "kind-projector" % "0.13.3" cross CrossVersion.full),
     libraryDependencies += "com.novocode" % "junit-interface" % "0.11" % Test,
     scalacOptions ++= {
       val jar = (core / Compile / packageBin).value
@@ -58,6 +58,6 @@ lazy val projectSettings = Seq(
   developers := List(
     Developer("augustjune", "Yura Slinkin", "jurij.jurich@gmail.com", url("https://github.com/augustjune"))
   ),
-  scalaVersion := "2.13.12",
+  scalaVersion := "2.13.14",
   crossScalaVersions := Seq(scalaVersion.value, "2.12.10", "2.11.12")
 )
