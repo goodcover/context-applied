@@ -8,6 +8,8 @@ lazy val `context-applied` = project
     crossScalaVersions := Nil
   )
 
+lazy val REPOSITORY_URL: String = sys.env.getOrElse("REPOSITORY_URL", throw new Exception("Missing REPOSITORY_URL"))
+
 lazy val core = project
   .in(file("core"))
   .settings(
@@ -59,5 +61,11 @@ lazy val projectSettings = Seq(
     Developer("augustjune", "Yura Slinkin", "jurij.jurich@gmail.com", url("https://github.com/augustjune"))
   ),
   scalaVersion := "2.13.14",
-  crossScalaVersions := Seq(scalaVersion.value, "2.12.19")
+  crossScalaVersions := Seq(scalaVersion.value, "2.12.19"),
+  publishTo := {
+    if (isSnapshot.value)
+      Some(("Goodcover Snapshots" at s"$REPOSITORY_URL/repository/maven-gc-snapshots").withAllowInsecureProtocol(true))
+    else
+      Some(("Goodcover Releases" at s"$REPOSITORY_URL/repository/maven-gc-releases").withAllowInsecureProtocol(true))
+  },
 )
