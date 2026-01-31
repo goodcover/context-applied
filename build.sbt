@@ -9,6 +9,8 @@ lazy val `context-applied` = project
   )
 
 lazy val REPOSITORY_URL: String = sys.env.getOrElse("REPOSITORY_URL", throw new Exception("Missing REPOSITORY_URL"))
+lazy val REPOSITORY_URL_RELEASE: String = sys.env.getOrElse("REPOSITORY_URL_RELEASE", throw new Exception("Missing REPOSITORY_URL_RELEASE"))
+lazy val REPOSITORY_URL_SNAPSHOT: String = sys.env.getOrElse("REPOSITORY_URL_SNAPSHOT", throw new Exception("Missing REPOSITORY_URL_SNAPSHOT"))
 
 lazy val core = project
   .in(file("core"))
@@ -64,8 +66,8 @@ lazy val projectSettings = Seq(
   crossScalaVersions := Seq(scalaVersion.value, "2.12.19"),
   publishTo := {
     if (isSnapshot.value)
-      Some(("Goodcover Snapshots" at s"$REPOSITORY_URL/repository/maven-gc-snapshots").withAllowInsecureProtocol(true))
+      Some(("Goodcover Snapshots" at REPOSITORY_URL_SNAPSHOT).withAllowInsecureProtocol(true))
     else
-      Some(("Goodcover Releases" at s"$REPOSITORY_URL/repository/maven-gc-releases").withAllowInsecureProtocol(true))
+      Some(("Goodcover Releases" at REPOSITORY_URL_RELEASE).withAllowInsecureProtocol(true))
   },
 )
